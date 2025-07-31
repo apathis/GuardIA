@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuardIA - Dashboard de Governança</title>
+    <title>MagistrIA - Dashboard de Governança</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="top-bar">
-        <div class="logo">GuardIA</div>
+        <div class="logo">MagistrIA</div>
         <div class="menu-items">
             <a href="#" class="menu-item active" data-tab="tab-relatorios">Relatórios</a>
             <a href="#" class="menu-item" data-tab="tab-configuracoes">Configurações</a>
@@ -43,22 +43,22 @@
             <div class="card card-risks">
                 <h2>Principais Riscos Detectados</h2>
                 <ul class="risk-list">
-                    <li class="risk-item" onclick="showModal()">
+                    <li class="risk-item" onclick="showModal('event-001')">
                         <i class="fas fa-exclamation-triangle" style="color: #FF5252;"></i>
                         <span>Risco de Vazamento: 'Dados de cliente inseridos no ChatGPT'.</span>
                         <span class="risk-percentage">45%</span>
                     </li>
-                    <li class="risk-item">
+                    <li class="risk-item" onclick="showModal('event-002')">
                         <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
                         <span>Violação de Política: 'Uso da IA para fins não-comerciais'.</span>
                         <span class="risk-percentage">30%</span>
                     </li>
-                    <li class="risk-item">
+                    <li class="risk-item" onclick="showModal('event-003')">
                         <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
                         <span>Alucinação/Viés: 'Resposta com dados sem fonte clara'.</span>
                         <span class="risk-percentage">20%</span>
                     </li>
-                    <li class="risk-item">
+                    <li class="risk-item" onclick="showModal('event-004')">
                         <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
                         <span>Desinformação: 'Notícia falsa gerada por IA'.</span>
                         <span class="risk-percentage">5%</span>
@@ -119,7 +119,7 @@
             
             <div class="card full-width-card">
                 <h2>Integrações com Sistemas Externos</h2>
-                <p>Conecte a GuardIA a outras plataformas para auditoria e controle.</p>
+                <p>Conecte a MagistrIA a outras plataformas para auditoria e controle.</p>
                 <div class="form-section">
                     <select class="policy-input">
                         <option value="soc_siem">SOC/SIEM</option>
@@ -136,8 +136,23 @@
                 <h2>Registro Completo de Auditoria</h2>
                 <p>Visualize um registro detalhado de todas as interações e eventos de risco para fins de auditoria e conformidade.</p>
                 
+                <div class="filter-panel">
+                    <select id="filter-ia">
+                        <option value="all">Todas as IAs</option>
+                        <option value="copilot">Copilot</option>
+                        <option value="chatgpt">ChatGPT</option>
+                        <option value="gemini">Google Gemini</option>
+                    </select>
+                    <select id="filter-risk">
+                        <option value="all">Todos os Riscos</option>
+                        <option value="high">Alto</option>
+                        <option value="medium">Médio</option>
+                        <option value="low">Baixo</option>
+                    </select>
+                </div>
+
                 <div class="audit-table-container">
-                    <table>
+                    <table id="audit-table">
                         <thead>
                             <tr>
                                 <th>Data/Hora</th>
@@ -149,105 +164,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr data-ia="copilot" data-risk="low">
                                 <td>29/07/2025 14:30</td>
                                 <td>Usuário A</td>
                                 <td>Uso Aprovado</td>
                                 <td>Copilot</td>
                                 <td><span class="status status-low">Baixo</span></td>
-                                <td><a href="#" onclick="showModal()">Ver Detalhes</a></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-001">Ver Detalhes</a></td>
                             </tr>
-                            <tr class="event-risco">
+                            <tr data-ia="chatgpt" data-risk="high">
                                 <td>29/07/2025 14:28</td>
                                 <td>Usuário A</td>
                                 <td>Detecção de PII</td>
                                 <td>ChatGPT</td>
                                 <td><span class="status status-high">Alto</span></td>
-                                <td><a href="#" onclick="showModal()">Ver Detalhes</a></td>
-                            </tr>
-                            <tr>
-                                <td>29/07/2025 14:15</td>
-                                <td>Usuário B</td>
-                                <td>Uso Aprovado</td>
-                                <td>Copilot</td>
-                                <td><span class="status status-low">Baixo</span></td>
-                                <td><a href="#">Ver Detalhes</a></td>
-                            </tr>
-                            <tr class="event-risco">
-                                <td>29/07/2025 14:02</td>
-                                <td>Usuário C</td>
-                                <td>Violação de Política</td>
-                                <td>Google Gemini</td>
-                                <td><span class="status status-medium">Médio</span></td>
-                                <td><a href="#">Ver Detalhes</a></td>
-                            </tr>
-                            <tr>
-                                <td>29/07/2025 13:55</td>
-                                <td>Usuário B</td>
-                                <td>Uso Aprovado</td>
-                                <td>ChatGPT</td>
-                                <td><span class="status status-low">Baixo</span></td>
-                                <td><a href="#">Ver Detalhes</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <div id="modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>Detalhes do Evento de Risco #0001</h2>
-            <p><strong>Usuário:</strong> [Nome do Usuário] | <strong>IA Utilizada:</strong> ChatGPT | <strong>Risco:</strong> <span style="color: #FF5252;">Alto</span></p>
-            <div class="prompt-box">
-                <p><strong>Conteúdo do Prompt:</strong></p>
-                <p>Análise de mercado para o cliente "Unimed Porto Alegre" utilizando dados internos de RG 12345678 e CNPJ 987654321.</p>
-            </div>
-            <div class="analysis-box">
-                <p><strong>Análise da GuardIA:</strong></p>
-                <p>Modelo detectou **PII (Dados Pessoais Identificáveis)** no prompt: 'RG 12345678'. Viola a política de segurança de dados.</p>
-            </div>
-            <div class="action-box">
-                <p><strong>Ações Tomadas:</strong></p>
-                <ul>
-                    <li>Bloqueou a interação.</li>
-                    <li>Enviou notificação para o gestor.</li>
-                    <li>Registrou o evento para auditoria.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        function showModal() {
-            document.getElementById('modal').style.display = 'flex';
-        }
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.menu-item');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    tabs.forEach(item => item.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const targetTabId = this.getAttribute('data-tab');
-                    tabContents.forEach(content => {
-                        content.style.display = 'none';
-                    });
-
-                    document.getElementById(targetTabId).style.display = 'grid';
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+                                <td><a href="#" class="view-details-link" data-event
