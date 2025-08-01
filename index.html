@@ -44,23 +44,31 @@
                 <h2>Principais Riscos Detectados</h2>
                 <ul class="risk-list">
                     <li class="risk-item">
-                        <i class="fas fa-exclamation-triangle" style="color: #FF5252;"></i>
-                        <span>Risco de Vazamento</span>
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FF5252;"></i>
+                            <span>Risco de Vazamento</span>
+                        </div>
                         <span class="risk-percentage">45%</span>
                     </li>
                     <li class="risk-item">
-                        <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
-                        <span>Violação de Política</span>
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
+                            <span>Violação de Política</span>
+                        </div>
                         <span class="risk-percentage">30%</span>
                     </li>
                     <li class="risk-item">
-                        <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
-                        <span>Alucinação/Viés</span>
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
+                            <span>Alucinação/Viés</span>
+                        </div>
                         <span class="risk-percentage">20%</span>
                     </li>
                     <li class="risk-item">
-                        <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
-                        <span>Desinformação</span>
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
+                            <span>Desinformação</span>
+                        </div>
                         <span class="risk-percentage">5%</span>
                     </li>
                 </ul>
@@ -232,6 +240,7 @@
     
     <div id="chat-button" class="chat-button">
         <i class="fas fa-comment-dots"></i>
+        <span>GuardIA</span>
     </div>
     
     <div id="chat-panel" class="chat-panel">
@@ -338,6 +347,26 @@
                 actions: ['Alerta de desinformação gerado para o usuário.', 'Interação bloqueada.'],
                 promptIsPrivate: true
             }
+        };
+
+        const assistantResponses = {
+            'quais os principais vazamentos?': `
+                Com base nos últimos 30 dias de dados de auditoria, os principais riscos de vazamento estão concentrados em:
+                <br><br>
+                - **Uso de RG e CPF:** 72% dos alertas.
+                - **Informações financeiras:** 18% dos alertas.
+                - **Chaves de API:** 10% dos alertas.
+                <br><br>
+                A maioria desses incidentes ocorreu no departamento de Vendas e Jurídico.
+            `,
+            'como podemos melhorar?': `
+                Com base na sua análise de riscos, as seguintes ações podem ser tomadas para melhorar a governança:
+                <br><br>
+                1. **Conscientização do Usuário:** Lançar uma campanha interna de conscientização sobre o uso de dados sensíveis em IAs.
+                2. **Revisão de Políticas:** Ajustar as políticas na aba 'Configurações' para ser mais específica sobre chaves de API.
+                3. **Monitoramento Ativo:** Manter a filtragem por "Risco Alto" na aba 'Auditoria' para uma análise proativa.
+            `,
+            'me ajude': `Olá! Para te ajudar melhor, por favor, faça uma pergunta específica, como "quais os principais vazamentos?" ou "como podemos melhorar?".`
         };
 
         async function getGeminiResponse(userMessage) {
