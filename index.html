@@ -11,6 +11,7 @@
 <body>
     <header class="top-bar">
         <div class="logo">GuardIA</div>
+        <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         <div class="menu-items">
             <a href="#" class="menu-item active" data-tab="tab-relatorios">Relatórios</a>
             <a href="#" class="menu-item" data-tab="tab-configuracoes">Configurações</a>
@@ -436,6 +437,14 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            // **NOVO** Lógica do Menu Mobile
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const menuItems = document.querySelector('.menu-items');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                menuItems.classList.toggle('active-mobile-menu');
+            });
+            
             const tabs = document.querySelectorAll('.menu-item');
             const tabContents = document.querySelectorAll('.tab-content');
             
@@ -452,6 +461,11 @@
                     });
 
                     document.getElementById(targetTabId).style.display = 'grid';
+
+                    // **NOVO** Esconde o menu mobile após clicar em um item
+                    if (window.innerWidth <= 768) {
+                        menuItems.classList.remove('active-mobile-menu');
+                    }
                 });
             });
 
@@ -527,12 +541,13 @@
 
             addRuleBtn.addEventListener('click', function() {
                 const newRule = ruleInput.value.trim();
-                const riskLevel = ruleRiskLevel.value;
-                const riskText = ruleRiskLevel.options[ruleRiskLevel.selectedIndex].text;
+                const riskLevelValue = ruleRiskLevel.value;
+                const riskLevelText = ruleRiskLevel.options[ruleRiskLevel.selectedIndex].text;
                 
                 if (newRule) {
                     const li = document.createElement('li');
-                    li.innerHTML = `<span class="status status-${riskLevel}">Risco ${riskText}</span>: ${newRule} <i class="fas fa-times-circle delete-icon"></i>`;
+                    // Ajuste para exibir "Risco Alto", "Risco Médio", etc.
+                    li.innerHTML = `<span class="status status-${riskLevelValue}">${riskLevelText}</span>: ${newRule} <i class="fas fa-times-circle delete-icon"></i>`;
                     ruleList.appendChild(li);
                     ruleInput.value = '';
                 }
@@ -574,7 +589,7 @@
 
                 const typingMessage = document.createElement('div');
                 typingMessage.classList.add('message', 'ai-message', 'typing-dots');
-                typingMessage.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+                typingMessage.innerHTML = '<span></span><span></span><span></span>';
                 chatHistory.appendChild(typingMessage);
                 chatHistory.scrollTop = chatHistory.scrollHeight;
 
