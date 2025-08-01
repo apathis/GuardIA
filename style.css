@@ -329,6 +329,7 @@ td a {
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Para telas menores */
 }
 .filter-panel select {
     padding: 10px;
@@ -355,7 +356,8 @@ td a {
     background-color: var(--card-bg);
     padding: 30px;
     border-radius: 8px;
-    width: 600px;
+    width: 90%;
+    max-width: 600px;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -511,11 +513,12 @@ td a {
     display: flex;
     gap: 5px;
     align-items: center;
+    padding: 15px; /* Adicionado para consistência */
 }
 .typing-dots span {
-    width: 6px;
-    height: 6px;
-    background-color: var(--text-color);
+    width: 8px;
+    height: 8px;
+    background-color: var(--text-secondary); /* Cor alterada para maior visibilidade */
     border-radius: 50%;
     animation: typing 1s infinite;
 }
@@ -526,11 +529,11 @@ td a {
     animation-delay: 0.4s;
 }
 @keyframes typing {
-    0% { opacity: 0.2; }
-    50% { opacity: 1; }
-    100% { opacity: 0.2; }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
+/* MEDIA QUERY CORRIGIDA */
 @media (max-width: 768px) {
     .top-bar {
         padding: 15px 15px;
@@ -538,13 +541,14 @@ td a {
     .menu-items {
         display: none;
         position: absolute;
-        top: 65px;
+        top: 65px; /* Altura da top-bar */
         left: 0;
         width: 100%;
         background-color: var(--primary-color);
         flex-direction: column;
         align-items: flex-start;
         padding-bottom: 10px;
+        z-index: 1001; /* Garante que fique acima de outros elementos */
     }
     .menu-items.active-mobile-menu {
         display: flex;
@@ -554,25 +558,24 @@ td a {
         text-align: left;
         padding: 10px 30px;
         margin: 0;
+        box-sizing: border-box; /* Garante padding correto */
     }
     .mobile-menu-btn {
-        display: block;
+        display: block; /* Mostra o botão do menu */
+        order: -1; /* Move o botão para antes do logo se necessário */
     }
     .user-info {
         display: none;
     }
-    .chat-panel {
+    .chat-panel.active {
         right: 0;
         bottom: 0;
         width: 100%;
         height: 100%;
         border-radius: 0;
-        bottom: 0;
         box-shadow: none;
     }
-    .chat-button {
-        display: none;
-    }
+    /* O botão do chat continua visível */
     .dashboard-container {
         display: flex;
         flex-direction: column;
@@ -580,5 +583,8 @@ td a {
     }
     .full-width-card {
         grid-column: auto;
+    }
+    .filter-panel {
+        flex-direction: column;
     }
 }
