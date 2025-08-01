@@ -15,8 +15,8 @@
             <a href="#" class="menu-item active" data-tab="tab-relatorios">Relatórios</a>
             <a href="#" class="menu-item" data-tab="tab-configuracoes">Configurações</a>
             <a href="#" class="menu-item" data-tab="tab-auditoria">Auditoria</a>
-            <a href="#" class="menu-item chat-menu-item" id="chat-menu-link">Assistente</a>
         </div>
+        <button id="mobile-menu-btn" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         <div class="user-info">
             <i class="fas fa-bell"></i>
             <span>Olá, Stephany!</span>
@@ -440,7 +440,12 @@
             // Lógica das abas
             const tabs = document.querySelectorAll('.menu-item');
             const tabContents = document.querySelectorAll('.tab-content');
-            const chatMenuLink = document.getElementById('chat-menu-link');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const menuItems = document.querySelector('.menu-items');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                menuItems.classList.toggle('active-mobile-menu');
+            });
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
@@ -455,6 +460,7 @@
                     });
 
                     document.getElementById(targetTabId).style.display = 'grid';
+                    menuItems.classList.remove('active-mobile-menu');
                 });
             });
 
@@ -559,11 +565,7 @@
             closeChatBtn.addEventListener('click', () => {
                 chatPanel.classList.remove('active');
             });
-            
-            chatMenuLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                chatPanel.classList.toggle('active');
-            });
+
 
             function addMessage(message, isUser = false) {
                 const messageDiv = document.createElement('div');
