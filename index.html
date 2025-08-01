@@ -260,7 +260,6 @@
     </div>
     
     <script>
-        // Dados de exemplo para cada evento de auditoria
         const auditEvents = {
             'event-001': {
                 id: '0001',
@@ -366,7 +365,7 @@
                 } else if (normalizedMessage.includes('como podemos melhorar?')) {
                     return assistantResponses['como podemos melhorar?'];
                 }
-                return "Desculpe, o GuardIA Assistant não está respondendo. Por favor, verifique se o backend está rodando no Render. Enquanto isso, posso responder a perguntas fixas como 'quais os principais vazamentos?' ou 'como podemos melhorar?'.";
+                return "Desculpe, a API do GuardIA Assistant não está respondendo. Para sua demo, use perguntas fixas como 'quais os principais vazamentos?' ou 'como podemos melhorar?'.";
             }
         }
 
