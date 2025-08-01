@@ -437,13 +437,15 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // **NOVO** Lógica do Menu Mobile
+            // **IMPORTANTE** Lógica do Menu Mobile
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const menuItems = document.querySelector('.menu-items');
 
-            mobileMenuBtn.addEventListener('click', function() {
-                menuItems.classList.toggle('active-mobile-menu');
-            });
+            if (mobileMenuBtn && menuItems) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    menuItems.classList.toggle('active-mobile-menu');
+                });
+            }
             
             const tabs = document.querySelectorAll('.menu-item');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -462,7 +464,7 @@
 
                     document.getElementById(targetTabId).style.display = 'grid';
 
-                    // **NOVO** Esconde o menu mobile após clicar em um item
+                    // Esconde o menu mobile após clicar em um item
                     if (window.innerWidth <= 768) {
                         menuItems.classList.remove('active-mobile-menu');
                     }
@@ -497,9 +499,9 @@
                 });
             }
 
-            filterIa.addEventListener('change', applyFilters);
-            filterRisk.addEventListener('change', applyFilters);
-            filterEventType.addEventListener('change', applyFilters);
+            if(filterIa) filterIa.addEventListener('change', applyFilters);
+            if(filterRisk) filterRisk.addEventListener('change', applyFilters);
+            if(filterEventType) filterEventType.addEventListener('change', applyFilters);
 
             // Lógica para o modal dinâmico
             const viewDetailsLinks = document.querySelectorAll('.view-details-link');
@@ -527,7 +529,7 @@
                 }
             }
 
-            addPolicyBtn.addEventListener('click', function() {
+            if(addPolicyBtn) addPolicyBtn.addEventListener('click', function() {
                 const newPolicy = policyInput.value.trim();
                 if (newPolicy) {
                     const li = document.createElement('li');
@@ -537,23 +539,22 @@
                 }
             });
 
-            policyList.addEventListener('click', handlePolicyDeletion);
+            if(policyList) policyList.addEventListener('click', handlePolicyDeletion);
 
-            addRuleBtn.addEventListener('click', function() {
+            if(addRuleBtn) addRuleBtn.addEventListener('click', function() {
                 const newRule = ruleInput.value.trim();
                 const riskLevelValue = ruleRiskLevel.value;
                 const riskLevelText = ruleRiskLevel.options[ruleRiskLevel.selectedIndex].text;
                 
                 if (newRule) {
                     const li = document.createElement('li');
-                    // Ajuste para exibir "Risco Alto", "Risco Médio", etc.
                     li.innerHTML = `<span class="status status-${riskLevelValue}">${riskLevelText}</span>: ${newRule} <i class="fas fa-times-circle delete-icon"></i>`;
                     ruleList.appendChild(li);
                     ruleInput.value = '';
                 }
             });
 
-            ruleList.addEventListener('click', handlePolicyDeletion);
+            if(ruleList) ruleList.addEventListener('click', handlePolicyDeletion);
 
             // Lógica do Chatbot
             const chatInput = document.getElementById('chat-input');
@@ -563,22 +564,13 @@
             const chatPanel = document.getElementById('chat-panel');
             const closeChatBtn = document.getElementById('close-chat-btn');
 
-            chatButton.addEventListener('click', () => {
+            if(chatButton) chatButton.addEventListener('click', () => {
                 chatPanel.classList.toggle('active');
             });
 
-            closeChatBtn.addEventListener('click', () => {
+            if(closeChatBtn) closeChatBtn.addEventListener('click', () => {
                 chatPanel.classList.remove('active');
             });
-
-            function addMessage(message, isUser = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message');
-                messageDiv.classList.add(isUser ? 'user-message' : 'ai-message');
-                messageDiv.innerHTML = message;
-                chatHistory.appendChild(messageDiv);
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            }
 
             async function handleChat() {
                 const userMessage = chatInput.value.trim();
@@ -599,9 +591,18 @@
 
                 addMessage(aiResponse);
             }
+            
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'ai-message');
+                messageDiv.innerHTML = message;
+                chatHistory.appendChild(messageDiv);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
 
-            sendBtn.addEventListener('click', handleChat);
-            chatInput.addEventListener('keypress', function(e) {
+            if(sendBtn) sendBtn.addEventListener('click', handleChat);
+            if(chatInput) chatInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     handleChat();
                 }
