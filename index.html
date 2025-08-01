@@ -351,20 +351,22 @@
 
         const assistantResponses = {
             'quais os principais vazamentos?': `
-                Com base nos últimos 30 dias de dados de auditoria, os principais riscos de vazamento estão concentrados em:
-                <br><br>
-                - **Uso de RG e CPF:** 72% dos alertas.
-                - **Informações financeiras:** 18% dos alertas.
-                - **Chaves de API:** 10% dos alertas.
-                <br><br>
+                <strong>Com base nos últimos 30 dias de dados de auditoria,</strong> os principais riscos de vazamento estão concentrados em:<br><br>
+                <ul>
+                    <li><strong>Uso de RG e CPF:</strong> 72% dos alertas.</li>
+                    <li><strong>Informações financeiras:</strong> 18% dos alertas.</li>
+                    <li><strong>Chaves de API:</strong> 10% dos alertas.</li>
+                </ul>
+                <br>
                 A maioria desses incidentes ocorreu no departamento de Vendas e Jurídico.
             `,
             'como podemos melhorar?': `
-                Com base na sua análise de riscos, as seguintes ações podem ser tomadas para melhorar a governança:
-                <br><br>
-                1. **Conscientização do Usuário:** Lançar uma campanha interna de conscientização sobre o uso de dados sensíveis em IAs.
-                2. **Revisão de Políticas:** Ajustar as políticas na aba 'Configurações' para ser mais específica sobre chaves de API.
-                3. **Monitoramento Ativo:** Manter a filtragem por "Risco Alto" na aba 'Auditoria' para uma análise proativa.
+                <strong>Com base na sua análise de riscos,</strong> as seguintes ações podem ser tomadas para melhorar a governança:<br><br>
+                <ol>
+                    <li><strong>Conscientização do Usuário:</strong> Lançar uma campanha interna sobre o uso de dados sensíveis em IAs.</li>
+                    <li><strong>Revisão de Políticas:</strong> Ajustar as políticas em 'Configurações' para ser mais específica sobre chaves de API.</li>
+                    <li><strong>Monitoramento Ativo:</strong> Manter a filtragem por "Risco Alto" em 'Auditoria' para uma análise proativa.</li>
+                </ol>
             `,
             'me ajude': `Olá! Para te ajudar melhor, por favor, faça uma pergunta específica, como "quais os principais vazamentos?" ou "como podemos melhorar?".`
         };
