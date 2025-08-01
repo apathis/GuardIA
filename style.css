@@ -64,6 +64,9 @@ body {
 
 .dashboard-container {
     padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
 .tab-content {
@@ -84,11 +87,6 @@ body {
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.chat-card {
-    display: flex;
-    flex-direction: column;
-    height: 400px;
 }
 
 .card h2 {
@@ -137,24 +135,29 @@ body {
 
 .risk-item {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid var(--bg-color);
+    cursor: pointer;
 }
 .risk-item:last-child {
     border-bottom: none;
 }
-.risk-item i {
+.risk-text-group {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+.risk-text-group i {
     margin-right: 10px;
     font-size: 18px;
-}
-.risk-item span {
-    flex-grow: 1;
 }
 .risk-percentage {
     font-weight: 700;
     color: var(--text-secondary);
+    width: 45px;
+    text-align: right;
 }
 
 /* Bar Chart */
@@ -391,6 +394,17 @@ td a {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    padding: 5px;
+    flex-direction: column;
+}
+.chat-button i {
+    margin: 0;
+    font-size: 24px;
+}
+.chat-button span {
+    font-size: 10px;
+    margin-top: 2px;
+    font-weight: 700;
 }
 .chat-panel {
     position: fixed;
@@ -496,6 +510,10 @@ td a {
 }
 
 @media (max-width: 768px) {
+    .dashboard-container {
+        display: flex;
+        flex-direction: column;
+    }
     .top-bar {
         flex-direction: column;
         text-align: center;
@@ -515,5 +533,11 @@ td a {
     }
     .chat-button {
         display: none;
+    }
+    .full-width-card, .tab-content.active {
+        grid-template-columns: 1fr;
+    }
+    .risk-percentage {
+        width: 50px;
     }
 }
