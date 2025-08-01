@@ -12,8 +12,8 @@
     <header class="top-bar">
         <div class="logo">GuardIA</div>
         <button class="mobile-menu-btn">
-    <span></span>
-</button>
+            <span></span>
+        </button>
         <div class="menu-items">
             <a href="#" class="menu-item active" data-tab="tab-relatorios">Relatórios</a>
             <a href="#" class="menu-item" data-tab="tab-configuracoes">Configurações</a>
@@ -170,7 +170,7 @@
                         <thead>
                             <tr>
                                 <th>Data/Hora</th>
-                                <th>Usuário</th>
+                                <th>ID da Conversa</th>
                                 <th>Tipo de Evento</th>
                                 <th>IA Utilizada</th>
                                 <th>Risco</th>
@@ -180,7 +180,7 @@
                         <tbody>
                             <tr data-ia="copilot" data-risk="low" data-event-type="uso-aprovado">
                                 <td>29/07/2025 14:30</td>
-                                <td>Usuário A</td>
+                                <td>Conversa #C0F3E2</td>
                                 <td>Uso Aprovado</td>
                                 <td>Copilot</td>
                                 <td><span class="status status-low">Baixo</span></td>
@@ -188,7 +188,7 @@
                             </tr>
                             <tr data-ia="chatgpt" data-risk="high" data-event-type="vazamento-dados">
                                 <td>29/07/2025 14:28</td>
-                                <td>Usuário A</td>
+                                <td>Conversa #C0F3E2</td>
                                 <td>Risco de Vazamento</td>
                                 <td>ChatGPT</td>
                                 <td><span class="status status-high">Alto</span></td>
@@ -196,7 +196,7 @@
                             </tr>
                             <tr data-ia="copilot" data-risk="low" data-event-type="uso-aprovado">
                                 <td>29/07/2025 14:15</td>
-                                <td>Usuário B</td>
+                                <td>Conversa #A9B8D1</td>
                                 <td>Uso Aprovado</td>
                                 <td>Copilot</td>
                                 <td><span class="status status-low">Baixo</span></td>
@@ -204,7 +204,7 @@
                             </tr>
                             <tr data-ia="gemini" data-risk="medium" data-event-type="violacao-politica">
                                 <td>29/07/2025 14:02</td>
-                                <td>Usuário C</td>
+                                <td>Conversa #E4F7C5</td>
                                 <td>Violação de Política</td>
                                 <td>Google Gemini</td>
                                 <td><span class="status status-medium">Médio</span></td>
@@ -212,7 +212,7 @@
                             </tr>
                             <tr data-ia="chatgpt" data-risk="low" data-event-type="uso-aprovado">
                                 <td>29/07/2025 13:55</td>
-                                <td>Usuário B</td>
+                                <td>Conversa #A9B8D1</td>
                                 <td>Uso Aprovado</td>
                                 <td>ChatGPT</td>
                                 <td><span class="status status-low">Baixo</span></td>
@@ -220,7 +220,7 @@
                             </tr>
                              <tr data-ia="chatgpt" data-risk="medium" data-event-type="alucinacao-vies">
                                 <td>29/07/2025 13:45</td>
-                                <td>Usuário D</td>
+                                <td>Conversa #B2D8D8</td>
                                 <td>Alucinação/Viés</td>
                                 <td>ChatGPT</td>
                                 <td><span class="status status-medium">Médio</span></td>
@@ -228,7 +228,7 @@
                             </tr>
                             <tr data-ia="gemini" data-risk="medium" data-event-type="desinformacao">
                                 <td>29/07/2025 13:20</td>
-                                <td>Usuário E</td>
+                                <td>Conversa #FFDDC1</td>
                                 <td>Desinformação</td>
                                 <td>Google Gemini</td>
                                 <td><span class="status status-medium">Médio</span></td>
@@ -275,7 +275,7 @@
         const auditEvents = {
             'event-001': {
                 id: '0001',
-                user: 'Usuário A',
+                conversationId: 'Conversa #C0F3E2',
                 ia: 'Copilot',
                 risk: 'Baixo',
                 riskColor: '#4CAF50',
@@ -286,7 +286,7 @@
             },
             'event-002': {
                 id: '0002',
-                user: 'Usuário A',
+                conversationId: 'Conversa #C0F3E2',
                 ia: 'ChatGPT',
                 risk: 'Alto',
                 riskColor: '#FF5252',
@@ -297,7 +297,7 @@
             },
             'event-003': {
                 id: '0003',
-                user: 'Usuário B',
+                conversationId: 'Conversa #A9B8D1',
                 ia: 'Copilot',
                 risk: 'Baixo',
                 riskColor: '#4CAF50',
@@ -308,7 +308,7 @@
             },
             'event-004': {
                 id: '0004',
-                user: 'Usuário C',
+                conversationId: 'Conversa #E4F7C5',
                 ia: 'Google Gemini',
                 risk: 'Médio',
                 riskColor: '#FFC107',
@@ -319,7 +319,7 @@
             },
             'event-005': {
                 id: '0005',
-                user: 'Usuário B',
+                conversationId: 'Conversa #A9B8D1',
                 ia: 'ChatGPT',
                 risk: 'Baixo',
                 riskColor: '#4CAF50',
@@ -330,7 +330,7 @@
             },
             'event-006': {
                 id: '0006',
-                user: 'Usuário D',
+                conversationId: 'Conversa #B2D8D8',
                 ia: 'ChatGPT',
                 risk: 'Médio',
                 riskColor: '#FFC107',
@@ -341,7 +341,7 @@
             },
             'event-007': {
                 id: '0007',
-                user: 'Usuário E',
+                conversationId: 'Conversa #FFDDC1',
                 ia: 'Google Gemini',
                 risk: 'Médio',
                 riskColor: '#FFC107',
@@ -417,7 +417,7 @@
             
             modalPlaceholder.innerHTML = `
                 <h2>Detalhes do Evento de Risco #${event.id}</h2>
-                <p><strong>Usuário:</strong> ${event.user} | <strong>IA Utilizada:</strong> ${event.ia} | <strong>Risco:</strong> <span style="color: ${event.riskColor};">${event.risk}</span></p>
+                <p><strong>ID da Conversa:</strong> ${event.conversationId} | <strong>IA Utilizada:</strong> ${event.ia} | <strong>Risco:</strong> <span style="color: ${event.riskColor};">${event.risk}</span></p>
                 <div class="prompt-box">
                     <p><strong>Conteúdo do Prompt:</strong></p>
                     <p>${promptContent}</p>
@@ -426,7 +426,7 @@
                     <p><strong>Análise da GuardIA:</strong></p>
                     <p>${event.analysis}</p>
                 </div>
-            <div class="action-box">
+                <div class="action-box">
                     <p><strong>Ações Tomadas:</strong></p>
                     <ul>${actionsList}</ul>
                 </div>
@@ -439,7 +439,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // **IMPORTANTE** Lógica do Menu Mobile
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const menuItems = document.querySelector('.menu-items');
 
@@ -466,14 +465,12 @@
 
                     document.getElementById(targetTabId).style.display = 'grid';
 
-                    // Esconde o menu mobile após clicar em um item
                     if (window.innerWidth <= 768) {
                         menuItems.classList.remove('active-mobile-menu');
                     }
                 });
             });
 
-            // Lógica dos Filtros
             const filterIa = document.getElementById('filter-ia');
             const filterRisk = document.getElementById('filter-risk');
             const filterEventType = document.getElementById('filter-event-type');
@@ -505,7 +502,6 @@
             if(filterRisk) filterRisk.addEventListener('change', applyFilters);
             if(filterEventType) filterEventType.addEventListener('change', applyFilters);
 
-            // Lógica para o modal dinâmico
             const viewDetailsLinks = document.querySelectorAll('.view-details-link');
             viewDetailsLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -515,7 +511,6 @@
                 });
             });
 
-            // Lógica de adicionar/remover políticas e regras de alerta
             const policyInput = document.getElementById('policy-input');
             const addPolicyBtn = document.getElementById('add-policy-btn');
             const policyList = document.getElementById('policy-list');
@@ -558,7 +553,6 @@
 
             if(ruleList) ruleList.addEventListener('click', handlePolicyDeletion);
 
-            // Lógica do Chatbot
             const chatInput = document.getElementById('chat-input');
             const sendBtn = document.getElementById('send-btn');
             const chatHistory = document.getElementById('chat-history');
