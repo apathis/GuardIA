@@ -16,7 +16,6 @@
             <a href="#" class="menu-item" data-tab="tab-configuracoes">Configurações</a>
             <a href="#" class="menu-item" data-tab="tab-auditoria">Auditoria</a>
         </div>
-        <button id="mobile-menu-btn" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         <div class="user-info">
             <i class="fas fa-bell"></i>
             <span>Olá, Stephany!</span>
@@ -437,16 +436,9 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Lógica das abas
             const tabs = document.querySelectorAll('.menu-item');
             const tabContents = document.querySelectorAll('.tab-content');
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const menuItems = document.querySelector('.menu-items');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                menuItems.classList.toggle('active-mobile-menu');
-            });
-
+            
             tabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -460,7 +452,6 @@
                     });
 
                     document.getElementById(targetTabId).style.display = 'grid';
-                    menuItems.classList.remove('active-mobile-menu');
                 });
             });
 
@@ -549,7 +540,6 @@
 
             ruleList.addEventListener('click', handlePolicyDeletion);
 
-
             // Lógica do Chatbot
             const chatInput = document.getElementById('chat-input');
             const sendBtn = document.getElementById('send-btn');
@@ -565,7 +555,6 @@
             closeChatBtn.addEventListener('click', () => {
                 chatPanel.classList.remove('active');
             });
-
 
             function addMessage(message, isUser = false) {
                 const messageDiv = document.createElement('div');
