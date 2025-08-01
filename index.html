@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuardIA - Dashboard de Governança</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">GuardIA</div>
+        <div class="menu-items">
+            <a href="#" class="menu-item active" data-tab="tab-relatorios">Relatórios</a>
+            <a href="#" class="menu-item" data-tab="tab-configuracoes">Configurações</a>
+            <a href="#" class="menu-item" data-tab="tab-auditoria">Auditoria</a>
+        </div>
+        <div class="user-info">
+            <i class="fas fa-bell"></i>
+            <span>Olá, Stephany!</span>
+            <div class="user-avatar"></div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div id="tab-relatorios" class="tab-content active">
+            <div class="card card-compliance">
+                <h2>Status de Conformidade da IA</h2>
+                <div class="compliance-status">
+                    <div class="donut-chart">
+                        <svg width="150" height="150" viewBox="0 0 150 150">
+                            <circle class="donut-ring" cx="75" cy="75" r="50" fill="transparent" stroke="#e0e0e0" stroke-width="20"></circle>
+                            <circle class="donut-segment" cx="75" cy="75" r="50" fill="transparent" stroke="#4CAF50" stroke-width="20" stroke-dasharray="307.87 314" stroke-dashoffset="0" style="transform: rotate(-90deg); transform-origin: 50% 50%;"></circle>
+                        </svg>
+                        <div class="percent">98.5%</div>
+                    </div>
+                    <p>Interações Seguras (9.850)</p>
+                </div>
+                <p class="summary-text">150 eventos de risco foram detectados na última semana.</p>
+            </div>
+            
+            <div class="card card-risks">
+                <h2>Principais Riscos Detectados</h2>
+                <ul class="risk-list">
+                    <li class="risk-item">
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FF5252;"></i>
+                            <span>Risco de Vazamento</span>
+                        </div>
+                        <span class="risk-percentage">45%</span>
+                    </li>
+                    <li class="risk-item">
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
+                            <span>Violação de Política</span>
+                        </div>
+                        <span class="risk-percentage">30%</span>
+                    </li>
+                    <li class="risk-item">
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
+                            <span>Alucinação/Viés</span>
+                        </div>
+                        <span class="risk-percentage">20%</span>
+                    </li>
+                    <li class="risk-item">
+                        <div class="risk-text-group">
+                            <i class="fas fa-exclamation-triangle" style="color: #FFC107;"></i>
+                            <span>Desinformação</span>
+                        </div>
+                        <span class="risk-percentage">5%</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card card-usage">
+                <h2>Uso por Departamento</h2>
+                <div class="chart-bar">
+                    <div class="bar" style="height: 80%;"><span class="bar-value">80%</span><span class="label">TI</span></div>
+                    <div class="bar" style="height: 60%;"><span class="bar-value">60%</span><span class="label">Marketing</span></div>
+                    <div class="bar" style="height: 45%;"><span class="bar-value">45%</span><span class="label">Vendas</span></div>
+                    <div class="bar" style="height: 25%;"><span class="bar-value">25%</span><span class="label">Jurídico</span></div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="tab-configuracoes" class="tab-content">
+            <div class="card full-width-card">
+                <h2>Políticas de Dados</h2>
+                <p>Defina palavras-chave ou padrões de texto considerados sensíveis.</p>
+                <div class="form-section">
+                    <input id="policy-input" type="text" placeholder="Adicionar nova palavra-chave (Ex: CNPJ, RG, CPF)..." class="policy-input">
+                    <button id="add-policy-btn" class="btn btn-primary">Adicionar</button>
+                </div>
+                <ul id="policy-list" class="policy-list">
+                    <li>CPF <i class="fas fa-times-circle delete-icon"></i></li>
+                    <li>RG <i class="fas fa-times-circle delete-icon"></i></li>
+                    <li>Número do Cartão <i class="fas fa-times-circle delete-icon"></i></li>
+                    <li>Endereço Completo <i class="fas fa-times-circle delete-icon"></i></li>
+                </ul>
+            </div>
+
+            <div class="card full-width-card">
+                <h2>Regras de Alerta</h2>
+                <p>Crie regras personalizadas para diferentes tipos de risco e notificações.</p>
+                <div class="form-section">
+                    <input id="rule-input" type="text" placeholder="Descrição da regra (Ex: 'Vazamento de dados médicos')..." class="policy-input">
+                    <select id="rule-risk-level" class="policy-input">
+                        <option value="high">Risco Alto</option>
+                        <option value="medium">Risco Médio</option>
+                        <option value="low">Risco Baixo</option>
+                    </select>
+                    <button id="add-rule-btn" class="btn btn-primary">Adicionar Regra</button>
+                </div>
+                <ul id="rule-list" class="policy-list">
+                    <li><span class="status status-high">Risco Alto</span>: Vazamento de dados médicos <i class="fas fa-times-circle delete-icon"></i></li>
+                    <li><span class="status status-medium">Risco Médio</span>: Uso de IA para fins não comerciais <i class="fas fa-times-circle delete-icon"></i></li>
+                </ul>
+            </div>
+            
+            <div class="card full-width-card">
+                <h2>Integrações com Sistemas Externos</h2>
+                <p>Conecte a GuardIA a outras plataformas para auditoria e controle.</p>
+                <div class="form-section">
+                    <select class="policy-input">
+                        <option value="soc_siem">SOC/SIEM</option>
+                        <option value="outros">Outros Sistemas</option>
+                    </select>
+                    <input type="text" placeholder="URL da API ou Chave de Acesso..." class="policy-input">
+                    <button class="btn btn-primary">Conectar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-auditoria" class="tab-content">
+            <div class="card full-width-card">
+                <h2>Registro Completo de Auditoria</h2>
+                <p>Visualize um registro detalhado de todas as interações e eventos de risco para fins de auditoria e conformidade.</p>
+                
+                <div class="filter-panel">
+                    <select id="filter-ia">
+                        <option value="all">Todas as IAs</option>
+                        <option value="copilot">Copilot</option>
+                        <option value="chatgpt">ChatGPT</option>
+                        <option value="gemini">Google Gemini</option>
+                    </select>
+                    <select id="filter-risk">
+                        <option value="all">Todos os Riscos</option>
+                        <option value="high">Alto</option>
+                        <option value="medium">Médio</option>
+                        <option value="low">Baixo</option>
+                    </select>
+                    <select id="filter-event-type">
+                        <option value="all">Todos os Eventos</option>
+                        <option value="uso-aprovado">Uso Aprovado</option>
+                        <option value="vazamento-dados">Risco de Vazamento</option>
+                        <option value="violacao-politica">Violação de Política</option>
+                        <option value="alucinacao-vies">Alucinação/Viés</option>
+                        <option value="desinformacao">Desinformação</option>
+                    </select>
+                </div>
+
+                <div class="audit-table-container">
+                    <table id="audit-table">
+                        <thead>
+                            <tr>
+                                <th>Data/Hora</th>
+                                <th>Usuário</th>
+                                <th>Tipo de Evento</th>
+                                <th>IA Utilizada</th>
+                                <th>Risco</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ia="copilot" data-risk="low" data-event-type="uso-aprovado">
+                                <td>29/07/2025 14:30</td>
+                                <td>Usuário A</td>
+                                <td>Uso Aprovado</td>
+                                <td>Copilot</td>
+                                <td><span class="status status-low">Baixo</span></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-001">Ver Detalhes</a></td>
+                            </tr>
+                            <tr data-ia="chatgpt" data-risk="high" data-event-type="vazamento-dados">
+                                <td>29/07/2025 14:28</td>
+                                <td>Usuário A</td>
+                                <td>Risco de Vazamento</td>
+                                <td>ChatGPT</td>
+                                <td><span class="status status-high">Alto</span></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-002">Ver Detalhes</a></td>
+                            </tr>
+                            <tr data-ia="copilot" data-risk="low" data-event-type="uso-aprovado">
+                                <td>29/07/2025 14:15</td>
+                                <td>Usuário B</td>
+                                <td>Uso Aprovado</td>
+                                <td>Copilot</td>
+                                <td><span class="status status-low">Baixo</span></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-003">Ver Detalhes</a></td>
+                            </tr>
+                            <tr data-ia="gemini" data-risk="medium" data-event-type="violacao-politica">
+                                <td>29/07/2025 14:02</td>
+                                <td>Usuário C</td>
+                                <td>Violação de Política</td>
+                                <td>Google Gemini</td>
+                                <td><span class="status status-medium">Médio</span></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-004">Ver Detalhes</a></td>
+                            </tr>
+                            <tr data-ia="chatgpt" data-risk="low" data-event-type="uso-aprovado">
+                                <td>29/07/2025 13:55</td>
+                                <td>Usuário B</td>
+                                <td>Uso Aprovado</td>
+                                <td>ChatGPT</td>
+                                <td><span class="status status-low">Baixo</span></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-005">Ver Detalhes</a></td>
+                            </tr>
+                             <tr data-ia="chatgpt" data-risk="medium" data-event-type="alucinacao-vies">
+                                <td>29/07/2025 13:45</td>
+                                <td>Usuário D</td>
+                                <td>Alucinação/Viés</td>
+                                <td>ChatGPT</td>
+                                <td><span class="status status-medium">Médio</span></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-006">Ver Detalhes</a></td>
+                            </tr>
+                            <tr data-ia="gemini" data-risk="medium" data-event-type="desinformacao">
+                                <td>29/07/2025 13:20</td>
+                                <td>Usuário E</td>
+                                <td>Desinformação</td>
+                                <td>Google Gemini</td>
+                                <td><span class="status status-medium">Médio</span></td>
+                                <td><a href="#" class="view-details-link" data-event-id="event-007">Ver Detalhes</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="chat-button" class="chat-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>GuardIA</span>
+    </div>
+    
+    <div id="chat-panel" class="chat-panel">
+        <div class="chat-header">
+            <h2>GuardIA Assistant</h2>
+            <button id="close-chat-btn">&times;</button>
+        </div>
+        <div id="chat-history" class="chat-history">
+            <div class="message ai-message">
+                Olá, Stephany! Sou sua assistente GuardIA. Como posso ajudar com a segurança de dados e governança de IA hoje?
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Pergunte-me algo...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-content-placeholder">
+                </div>
+        </div>
+    </div>
+    
+    <script>
+        const auditEvents = {
+            'event-001': {
+                id: '0001',
+                user: 'Usuário A',
+                ia: 'Copilot',
+                risk: 'Baixo',
+                riskColor: '#4CAF50',
+                prompt: 'Código solicitado para um script de automação interna.',
+                analysis: 'Interação classificada como uso padrão de ferramenta de IA. Não foi detectado nenhum risco.',
+                actions: ['Interação aprovada e registrada para auditoria.'],
+                promptIsPrivate: true
+            },
+            'event-002': {
+                id: '0002',
+                user: 'Usuário A',
+                ia: 'ChatGPT',
+                risk: 'Alto',
+                riskColor: '#FF5252',
+                prompt: 'Análise de mercado para o cliente "Unimed Porto Alegre" utilizando dados internos de RG 12345678 e CNPJ 987654321.',
+                analysis: 'Modelo detectou uma tentativa de uso de dados sensíveis do cliente "Unimed Porto Alegre" (RG e CNPJ). Violação crítica de segurança.',
+                actions: ['Interação bloqueada e não enviada para a IA.', 'Notificação de incidente crítico enviada para o SOC da empresa.'],
+                promptIsPrivate: false
+            },
+            'event-003': {
+                id: '0003',
+                user: 'Usuário B',
+                ia: 'Copilot',
+                risk: 'Baixo',
+                riskColor: '#4CAF50',
+                prompt: 'Resumo de documento técnico sobre o novo sistema de CRM.',
+                analysis: 'Interação classificada como uso padrão. O documento não continha dados sensíveis.',
+                actions: ['Interação aprovada e registrada para auditoria.'],
+                promptIsPrivate: true
+            },
+            'event-004': {
+                id: '0004',
+                user: 'Usuário C',
+                ia: 'Google Gemini',
+                risk: 'Médio',
+                riskColor: '#FFC107',
+                prompt: 'Gere um rascunho de e-mail marketing, mencionando a "promoção exclusiva para clientes do estado de SP".',
+                analysis: 'Detecção de termos de promoção ("promoção exclusiva") que podem gerar riscos legais ou de marca se não revisados. O conteúdo foi sinalizado como "Conteúdo de Marketing não-aprovado" para revisão humana.',
+                actions: ['Interação sinalizada e registrada para revisão.', 'Notificação de recomendação de revisão enviada ao gestor de marketing.'],
+                promptIsPrivate: true
+            },
+            'event-005': {
+                id: '0005',
+                user: 'Usuário B',
+                ia: 'ChatGPT',
+                risk: 'Baixo',
+                riskColor: '#4CAF50',
+                prompt: 'Tradução de um e-mail de um fornecedor estrangeiro.',
+                analysis: 'Uso de tradução de texto aprovado. Nenhum dado sensível detectado.',
+                actions: ['Interação aprovada e registrada para auditoria.'],
+                promptIsPrivate: true
+            },
+            'event-006': {
+                id: '0006',
+                user: 'Usuário D',
+                ia: 'ChatGPT',
+                risk: 'Médio',
+                riskColor: '#FFC107',
+                prompt: 'Como fazer um resumo de um texto sobre a queda de receita anual de 2024?',
+                analysis: 'A resposta da IA continha dados sem fonte clara e sem referências. Potencial de alucinação e viés.',
+                actions: ['Alerta de viés gerado para o usuário.', 'Interação registrada para revisão.'],
+                promptIsPrivate: true
+            },
+            'event-007': {
+                id: '0007',
+                user: 'Usuário E',
+                ia: 'Google Gemini',
+                risk: 'Médio',
+                riskColor: '#FFC107',
+                prompt: 'Crie uma notícia fictícia sobre a empresa X e seu novo produto.',
+                analysis: 'Violação de política de uso para criação de conteúdo fictício que pode ser confundido com desinformação.',
+                actions: ['Alerta de desinformação gerado para o usuário.', 'Interação bloqueada.'],
+                promptIsPrivate: true
+            }
+        };
+
+        const assistantResponses = {
+            'quais os principais vazamentos?': `
+                <strong>Com base nos últimos 30 dias de dados de auditoria,</strong> os principais riscos de vazamento estão concentrados em:<br><br>
+                <ul>
+                    <li><strong>Uso de RG e CPF:</strong> 72% dos alertas.</li>
+                    <li><strong>Informações financeiras:</strong> 18% dos alertas.</li>
+                    <li><strong>Chaves de API:</strong> 10% dos alertas.</li>
+                </ul>
+                <br>
+                A maioria desses incidentes ocorreu no departamento de Vendas e Jurídico.
+            `,
+            'como podemos melhorar?': `
+                <strong>Com base na sua análise de riscos,</strong> as seguintes ações podem ser tomadas para melhorar a governança:<br><br>
+                <ol>
+                    <li><strong>Conscientização do Usuário:</strong> Lançar uma campanha interna sobre o uso de dados sensíveis em IAs.</li>
+                    <li><strong>Revisão de Políticas:</strong> Ajustar as políticas em 'Configurações' para ser mais específica sobre chaves de API.</li>
+                    <li><strong>Monitoramento Ativo:</strong> Manter a filtragem por "Risco Alto" em 'Auditoria' para uma análise proativa.</li>
+                </ol>
+            `,
+            'me ajude': `Olá! Para te ajudar melhor, por favor, faça uma pergunta específica, como "quais os principais vazamentos?" ou "como podemos melhorar?".`
+        };
+
+        async function getGeminiResponse(userMessage) {
+            const endpoint = 'https://guardia-back.onrender.com/chat';
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: userMessage })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro no servidor: ${response.status} - ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.message;
+            } catch (error) {
+                console.error("Erro ao chamar o backend:", error);
+                
+                const normalizedMessage = userMessage.toLowerCase().trim();
+                if (normalizedMessage.includes('quais os principais vazamentos?')) {
+                    return assistantResponses['quais os principais vazamentos?'];
+                } else if (normalizedMessage.includes('como podemos melhorar?')) {
+                    return assistantResponses['como podemos melhorar?'];
+                }
+                return "Desculpe, a API do GuardIA Assistant não está respondendo. Para sua demo, use perguntas fixas como 'quais os principais vazamentos?' ou 'como podemos melhorar?'.";
+            }
+        }
+
+
+        function showModal(eventId) {
+            const event = auditEvents[eventId];
+            if (!event) return;
+
+            const modalPlaceholder = document.getElementById('modal-content-placeholder');
+            const actionsList = event.actions.map(action => `<li>${action}</li>`).join('');
+
+            const promptContent = event.promptIsPrivate ? 
+                `Conteúdo do prompt oculto por política de privacidade` : 
+                `${event.prompt}`;
+            
+            modalPlaceholder.innerHTML = `
+                <h2>Detalhes do Evento de Risco #${event.id}</h2>
+                <p><strong>Usuário:</strong> ${event.user} | <strong>IA Utilizada:</strong> ${event.ia} | <strong>Risco:</strong> <span style="color: ${event.riskColor};">${event.risk}</span></p>
+                <div class="prompt-box">
+                    <p><strong>Conteúdo do Prompt:</strong></p>
+                    <p>${promptContent}</p>
+                </div>
+                <div class="analysis-box">
+                    <p><strong>Análise da GuardIA:</strong></p>
+                    <p>${event.analysis}</p>
+                </div>
+            <div class="action-box">
+                    <p><strong>Ações Tomadas:</strong></p>
+                    <ul>${actionsList}</ul>
+                </div>
+            `;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lógica das abas
+            const tabs = document.querySelectorAll('.menu-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    tabs.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const targetTabId = this.getAttribute('data-tab');
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+
+                    document.getElementById(targetTabId).style.display = 'grid';
+                });
+            });
+
+            // Lógica dos Filtros
+            const filterIa = document.getElementById('filter-ia');
+            const filterRisk = document.getElementById('filter-risk');
+            const filterEventType = document.getElementById('filter-event-type');
+            const tableRows = document.querySelectorAll('#audit-table tbody tr');
+
+            function applyFilters() {
+                const selectedIa = filterIa.value;
+                const selectedRisk = filterRisk.value;
+                const selectedEventType = filterEventType.value;
+
+                tableRows.forEach(row => {
+                    const rowIa = row.getAttribute('data-ia');
+                    const rowRisk = row.getAttribute('data-risk');
+                    const rowEventType = row.getAttribute('data-event-type');
+                    
+                    const iaMatch = selectedIa === 'all' || selectedIa === rowIa;
+                    const riskMatch = selectedRisk === 'all' || selectedRisk === rowRisk;
+                    const eventTypeMatch = selectedEventType === 'all' || selectedEventType === rowEventType;
+
+                    if (iaMatch && riskMatch && eventTypeMatch) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            filterIa.addEventListener('change', applyFilters);
+            filterRisk.addEventListener('change', applyFilters);
+            filterEventType.addEventListener('change', applyFilters);
+
+            // Lógica para o modal dinâmico
+            const viewDetailsLinks = document.querySelectorAll('.view-details-link');
+            viewDetailsLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const eventId = this.getAttribute('data-event-id');
+                    showModal(eventId);
+                });
+            });
+
+            // Lógica de adicionar/remover políticas e regras de alerta
+            const policyInput = document.getElementById('policy-input');
+            const addPolicyBtn = document.getElementById('add-policy-btn');
+            const policyList = document.getElementById('policy-list');
+            
+            const ruleInput = document.getElementById('rule-input');
+            const ruleRiskLevel = document.getElementById('rule-risk-level');
+            const addRuleBtn = document.getElementById('add-rule-btn');
+            const ruleList = document.getElementById('rule-list');
+
+            function handlePolicyDeletion(e) {
+                if (e.target.classList.contains('delete-icon')) {
+                    e.target.parentElement.remove();
+                }
+            }
+
+            addPolicyBtn.addEventListener('click', function() {
+                const newPolicy = policyInput.value.trim();
+                if (newPolicy) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${newPolicy} <i class="fas fa-times-circle delete-icon"></i>`;
+                    policyList.appendChild(li);
+                    policyInput.value = '';
+                }
+            });
+
+            policyList.addEventListener('click', handlePolicyDeletion);
+
+            addRuleBtn.addEventListener('click', function() {
+                const newRule = ruleInput.value.trim();
+                const riskLevel = ruleRiskLevel.value;
+                const riskText = ruleRiskLevel.options[ruleRiskLevel.selectedIndex].text;
+                
+                if (newRule) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span class="status status-${riskLevel}">Risco ${riskText}</span>: ${newRule} <i class="fas fa-times-circle delete-icon"></i>`;
+                    ruleList.appendChild(li);
+                    ruleInput.value = '';
+                }
+            });
+
+            ruleList.addEventListener('click', handlePolicyDeletion);
+
+
+            // Lógica do Chatbot
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            const chatHistory = document.getElementById('chat-history');
+            const chatButton = document.getElementById('chat-button');
+            const chatPanel = document.getElementById('chat-panel');
+            const closeChatBtn = document.getElementById('close-chat-btn');
+
+            chatButton.addEventListener('click', () => {
+                chatPanel.classList.toggle('active');
+            });
+
+            closeChatBtn.addEventListener('click', () => {
+                chatPanel.classList.remove('active');
+            });
+
+
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'ai-message');
+                messageDiv.innerHTML = message;
+                chatHistory.appendChild(messageDiv);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+
+            async function handleChat() {
+                const userMessage = chatInput.value.trim();
+                if (userMessage === '') return;
+
+                addMessage(userMessage, true);
+                chatInput.value = '';
+
+                const typingMessage = document.createElement('div');
+                typingMessage.classList.add('message', 'ai-message', 'typing-dots');
+                typingMessage.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+                chatHistory.appendChild(typingMessage);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+
+                const aiResponse = await getGeminiResponse(userMessage);
+
+                typingMessage.remove();
+
+                addMessage(aiResponse);
+            }
+
+            sendBtn.addEventListener('click', handleChat);
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleChat();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
